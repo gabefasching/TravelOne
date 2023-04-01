@@ -37,7 +37,7 @@ ul.taskbar {
 
   .hotDests{
     width: 98%;
-    height: auto;
+    aspect-ratio: 3/1;
     align-items: center;
     padding: 15px;
     margin-top: 10px;
@@ -49,14 +49,59 @@ ul.taskbar {
     border-width: 2px;
 
   }
+
+  
+ 
+  
+  .middle {
+    width: 100%;
+    height: 100%;
+    transition: .5s ease;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    background-color: rgba(52, 55, 64,.5);
+    text-align: left;
+    font-size: 20px;
+    border: 0px;
+  }
+  
+
+  
+
   .hotImg{
     width: 33%;
+    position: relative;
     opacity: 100%;
     height: width;
-  }
-  .hotImg:hover{
+    float: left;
     
   }
+
+  .hotImg:hover .image {
+    opacity: 0.3;
+  }
+  
+  .hotImg:hover .middle {
+    opacity: 1;
+  }
+
+  img.hI{
+    width: 100%;
+    height: width;
+    transition: .5s ease;
+    backface-visibility: hidden;
+    opacity: 1;
+  }
+
+  img.hI:hover{
+    z-index: -1;
+  }
+
+
   .idInput{
     width: 98%;
     height: auto;
