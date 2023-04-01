@@ -1,0 +1,55 @@
+ul.taskbar {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+  }
+  
+  li.taskbar {
+    float: left;
+    border-right:1px solid #bbb;
+  }
+  
+  li.taskbar:last-child {
+    border-right: none;
+    float: right;
+  }
+  
+  li a.taskbar {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  
+  li a.taskbar:hover:not(.active) {
+    background-color: #111;
+  }
+  
+  .active {
+    background-color: #04AA6D;
+  }
+
+
+  .hotDests{
+    width: 98%;
+    height: auto;
+    align-items: center;
+    padding: 15px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: rgba(52, 55, 64,.5);
+    border-color: aliceblue;
+    border-width: 2px;
+
+  }
+  .hotImg{
+    width: 33%;
+    opacity: 100%;
+    height: width;
+    
+  }
