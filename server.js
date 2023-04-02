@@ -15,17 +15,17 @@ app.listen(PORT, () => {
   console.log(`Running Server on ${PORT}`);
 });
 
-app.get('/', async (req, res) => {
-  try {
-    const response = await axios.get('https://catfact.ninja/fact');
-    const data = response.data;
-    console.log('Data sent from backend:', data);
-    res.json(data);
-  } catch (error) {
-    console.error(error);
-    res.status(500).send('Internal server error');
-  }
-});
+// app.get('/', async (req, res) => {
+//   try {
+//     const response = await axios.get('https://catfact.ninja/fact');
+//     const data = response.data;
+//     console.log('Data sent from backend:', data);
+//     res.json(data);
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).send('Internal server error');
+//   }
+// });
 
 
 const messages = [{ "role": "user", "content": "Provide an array of size 3 with popular tourist cities JSON format with the format of city, popular_attractions, city_description" }];
@@ -42,7 +42,7 @@ const GPTTouristData = {
 
 
 app.get('/GPTLocationInfo', async (req, res) => {
-  console.log("------- GPT IS BEING USED RIGHT NOW -------")
+  //console.log("------- GPT IS BEING USED RIGHT NOW -------")
   const response = await axios({
     method: 'post',
     url: 'https://api.openai.com/v1/chat/completions',
@@ -53,13 +53,13 @@ app.get('/GPTLocationInfo', async (req, res) => {
     data: GPTTouristData,
   })
   const data = JSON.parse('{ "locations" : ' + String(response.data.choices[0].message.content) + '}');
-    console.log(data);
+    //console.log(data);
     res.json(data);
 });
 
 
 app.post('/DALLEPicture', async (req, res) => {
-  console.log("------- DALLE IS BEING USED RIGHT NOW -------")
+  //console.log("------- DALLE IS BEING USED RIGHT NOW -------")
   body = req.body;
   if (JSON.stringify(body.data) == '{}') {
     res.json({
@@ -81,7 +81,7 @@ app.post('/DALLEPicture', async (req, res) => {
     },
   })
   const data = response.data.data[0];
-  console.log(data);
+  //console.log(data);
   res.json(data);
 });
 

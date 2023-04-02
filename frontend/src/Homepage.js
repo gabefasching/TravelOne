@@ -26,7 +26,6 @@ function HomePage() {
   useEffect(() => {
     const  fetchLocationData = async () => {
       await axios.get('http://localhost:3000/GPTLocationInfo', {timeout : 20000000}).then((response) => {
-        console.log(response);
         setFirstCity(response.data.locations[0]);
         setSecondCity(response.data.locations[1]);
         setThirdCity(response.data.locations[2]);
