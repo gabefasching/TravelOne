@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const express = require('express');
 const cors = require('cors');
 const bParse = require('body-parser');
@@ -5,6 +7,7 @@ const axios = require('axios')
 const hotelAPI = require('./hotelAPI.js');
 const pythonAPI = require('./pythonAPI.js');
 const app = express();
+
 
 app.use(cors());
 app.use(bParse.json());
@@ -31,7 +34,7 @@ app.listen(PORT, () => {
 const messages = [{ "role": "user", "content": "Provide an array of size 3 with popular tourist cities JSON format with the format of city, popular_attractions, city_description" }];
 //const messages = [{ "role": "user", "content": "hi" }];
 //GPT-3 and DALL-E API Key
-const GPTApiKey = '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';
+const GPTApiKey = process.env.GPT_API_KEY;
 const model = 'gpt-3.5-turbo';
 
 

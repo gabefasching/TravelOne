@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './App.css';
+import bootstrap from 'bootstrap/dist/css/bootstrap.min.css';
 
 function RouteButton() {
   function handleClick() {
@@ -8,7 +9,7 @@ function RouteButton() {
   }
 
   return (
-    <button onClick={handleClick}>Go to Hotels</button>
+    <button type="button" class="btn btn-primary float-start mx-3 px-5 my-3 py-3" onClick={handleClick}>Go to Hotels</button>
   );
 }
 
@@ -64,26 +65,23 @@ function HomePage() {
   //pass state variables as values to html components
   return (
     <body>
-      <ul class="taskbar">
-        <li class="taskbar"><div class="taskbar" href=""><title>TRAVEL ONE</title></div></li>
-        <li class="taskbar"><div class="taskbar" href="about.asp">About</div></li>
-      </ul>
+      <div class="taskbar" href=""><h1 class="text-black text-center display-1">Travel One</h1></div>
 
       <div class="hotDests">
         <div class="hotImg"><img class="hI" src={image1 == null ? '' : image1.url} /> <div class="middle">
-          <h1>{firstCity == null ? "Data not yet loaded" :firstCity.city}</h1>
+          <h1 class="text-white">{firstCity == null ? "Data not yet loaded" :firstCity.city}</h1>
           <br></br>
-          <h4>{firstCity == null ? "Data not yet loaded" : firstCity.city_description}</h4>
+          <h4 class="text-white">{firstCity == null ? "Data not yet loaded" : firstCity.city_description}</h4>
         </div></div>
         <div class="hotImg"><img class="hI" src={image2 == null ? '' : image2.url} /><div class="middle">
-          <h1>{firstCity  == null ? "Data not yet loaded" : secondCity.city}</h1>
+          <h1 class="text-white">{firstCity  == null ? "Data not yet loaded" : secondCity.city}</h1>
           <br></br>
-          <h4>{secondCity == null ? "Data not yet loaded" : secondCity.city_description}</h4>
+          <h4 class="text-white">{secondCity == null ? "Data not yet loaded" : secondCity.city_description}</h4>
         </div></div>
         <div class="hotImg"><img class="hI" src={image3 == null ? '' : image3.url} /><div class="middle">
-          <h1>{thirdCity  == null ? "Data not yet loaded" : thirdCity.city}</h1>
+          <h1 class="text-white">{thirdCity  == null ? "Data not yet loaded" : thirdCity.city}</h1>
           <br></br>
-          <h4>{thirdCity  == null ? "Data not yet loaded" : thirdCity.city_description}</h4>
+          <h4 class="text-white">{thirdCity  == null ? "Data not yet loaded" : thirdCity.city_description}</h4>
         </div></div>
       </div>
 
@@ -92,11 +90,15 @@ function HomePage() {
       <div class="idInput">
         <div class="idLabel">Start Your Adventure!!</div>
         <div class="rightHalf">
-          <input class="idFeild" type="text" id="name" name="name" required minlength="4" maxlength="8" size="10" />
-          <button class="idButton">Go!</button>
+        <div class="input-group">
+        <span class="input-group-text ms-3 my-3">Enter Account ID</span>
+        <textarea class="form-control me-3 my-3" aria-label="With textarea"></textarea>
+        </div>
+        <div class="flex">
+        <button type="button" class="btn btn-primary float-start mx-3 px-5 my-3 py-3">Sign In</button>
         </div>
         <RouteButton />
-
+        </div>
       </div>
     </body>
   
