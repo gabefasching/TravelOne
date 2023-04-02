@@ -12,6 +12,9 @@ function HotelPage() {
   const [checkOut, setCheckOut] = useState('');
   const [guests, setGuests] = useState('');
   const [rooms, setRooms] = useState('');
+  const [hotels,setHotels] = useState([]);
+  const [leavingFlights,setLeavingFlights] = useState([]);
+  const [returningFlights,setReturningFlights] = useState([]);
   
   const handleLocationChange = (event) => {
     setLocation(event.target.value);
@@ -30,24 +33,20 @@ function HotelPage() {
   };
 //url: 'https://capitaloneshopping.com/api/v1/hotels/search?location='+location+'&checkIn='+checkIn+'&checkOut='+checkOut+'&guests='+guests+'&children=0&rooms=1&searchId=8f90aef2-9d69-4f61-b89f-3810405235a4',
 
-  const handleClick = () => {
-    // 👇 "message" stores input field value
-    axios({
-      method: 'get',
-      url:'https://capitaloneshopping.com/api/v1/hotels/search?location=Madrid%2C+Spain&checkIn=2023-04-11&checkOut=2023-04-12&guests=2&children=0&rooms=1&searchId=8f90aef2-9d69-4f61-b89f-3810405235a4',
-      headers: {
-          'Content-Type': 'application/json',
-          'cookie' : 'wb_session=WB qyHBLlBjgvnF9sR6O66FXMntFoKbdf3XzF7XXsYjtqYtOKoD81XkuNALH1XOrR+BzyLcypIjPW8Oq8Z52b4/nqfVlLPYrf1KHaVGX4AOuW4f0AaVxXIdTHNUAwVug8vgxYV731V36HKThnAjxHxa+qvg+hM2SmjkwAfB7bPJl6vOjvaiyV2qJcDJGQDHGDOz4lAQcMfB7djDlu43foWYtKKQMRiDwdi2/3RQdcre5c7//IK684Trxl9XOh4uTXBYKQtWrIcYPiJYrwtZzN2Xtr68N5ECLTJbQB5R; __cf_bm=BfoMf4XsqyGF2.RIiyRVu2OfOS3IdXyYlYNV0uIlZGA-1680402551-0-AfwcO4Be7IOz65MUNvPwbbaGhKTOgY+c2tutL7r+HRL5ad9KKhx3b+/cD4jrO08hDpv/9xD1xFK4i1pksOuMA5w=; w82S5kL1=ALUTzD-HAQAAAlgLxgYznJgUVG5W8RVFNfxDajQkglLl6j4oGkkfqf4fncb8|1|0|d3adc96e91af3489456c302c6a397e4adfdc2121; ajs_group_id=null; ajs_user_id="f8bedbf1-2ea7-5ace-80a5-7783de7da8a0"; ajs_anonymous_id="dacc6005-b669-4b62-82b1-2cc8301d7449"; _dd_s=rum=0&expire=1680403755161'
-      },
+useEffect(() => {
+  const  fetchLocationData = async () => {
+    await axios.post('http://localhost:3000/hotelAPI/hotels', {"location":location,"checkIn":checkIn,"checkOut":checkOut, "guests":guests,"rooms":rooms}).then((response) => {
+      console.log(response);
+      setHotels(response.data);
 
-  })
-      .then((response) => {
-          console.log(response.data.hotels[0]);
-      })
-      .catch((error) => {
-          console.error(error);
-      });
+    });
   };
+  fetchLocationData();
+
+  
+}, []);
+
+
   //will update react view everytime useEffect is called
 
 
@@ -82,7 +81,36 @@ function HotelPage() {
         </div>
 
       </div>
-      <button onClick={handleClick}>button</button>
+      <button onClick={useEffect}>button</button>
+      <div class="hotels">
+
+        <div class="hotelBox"> 
+          <img class="hotelImg" src={hotels[0].img}/> 
+          <div class = "savings">{hotels[0].savings}</div>
+          <div class = "disc"> {hotels[0].discription}</div>
+          <a href={hotels[0].bookingUrl} class = "link">Click Here to Book!</a>
+        </div>
+
+        <div class="hotelBox"> 
+          <img class="hotelImg" src={hotels[1].img}/> 
+          <div class = "savings">{hotels[1].savings}</div>
+          <div class = "disc"> {hotels[1].discription}</div>
+          <a href={hotels[1].bookingUrl} class = "link">Click Here to Book!</a>
+        </div>
+
+        <div class="hotelBox"> 
+          <img class="hotelImg" src={hotels[2].img}/> 
+          <div class = "savings">{hotels[2].savings}</div>
+          <div class = "disc"> {hotels[2].discription}</div>
+          <a href={hotels[2].bookingUrl} class = "link">Click Here to Book!</a>
+        </div>
+      </div>
+
+        
+        
+
+      <div class="leaving"></div>
+      <div class="returning"></div>
     </body>
     
     
