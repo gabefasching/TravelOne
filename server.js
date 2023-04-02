@@ -3,6 +3,7 @@ const cors = require('cors');
 const bParse = require('body-parser');
 const axios = require('axios')
 const hotelAPI = require('./hotelAPI.js');
+const pythonAPI = require('./pythonAPI.js');
 const app = express();
 
 app.use(cors());
@@ -79,6 +80,7 @@ app.post('/DALLEPicture', async (req, res) => {
 });
 
 app.use('/hotelAPI', hotelAPI);
+app.use('/pythonAPI', pythonAPI);
   
   
   
