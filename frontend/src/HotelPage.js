@@ -100,25 +100,29 @@ const useEffect = (event) => {
           <div class="searchLabel">Rooms:</div>
           <input class="searchInput" onChange={handleRoomsChange}/>
         </div>
+        <div class="bookButton">
+          <button onClick={useEffect} >Book It!!</button>  
+        </div>
 
       </div>
-      <button onClick={useEffect}>button</button>
+      <center>
+      
       <div class="hotels">
-
+        <br/>
         <div class="hotelBox"> 
           <img class="hotelImg" src={hotels[0].image}/> 
           <div class = "savings">{hotels[0].savings}</div>
           <div class = "disc"> {hotels[0].discription}</div>
           <a href={hotels[0].bookingUrl} class = "link">Click Here to Book!</a>
         </div>
-
+        <br/>
         <div class="hotelBox"> 
           <img class="hotelImg" src={hotels[1].image}/> 
           <div class = "savings">{hotels[1].savings}</div>
           <div class = "disc"> {hotels[1].discription}</div>
           <a href={hotels[1].bookingUrl} class = "link">Click Here to Book!</a>
         </div>
-
+        <br/>
         <div class="hotelBox"> 
           <img class="hotelImg" src={hotels[2].image}/> 
           <div class = "savings">{hotels[2].savings}</div>
@@ -128,6 +132,7 @@ const useEffect = (event) => {
       </div>
       <div class="leaving"></div>
       <div class="returning"></div>
+      </center>
     </body>
     
     
