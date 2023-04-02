@@ -26,8 +26,8 @@ app.get('/', async (req, res) => {
 });
 
 
-const messages = [{ "role": "user", "content": "Provide an array of size 3 with popular tourist cities JSON format with the format of city, popular attractions, city description" }];
-
+const messages = [{ "role": "user", "content": "Provide an array of size 3 with popular tourist cities JSON format with the format of city, popular_attractions, city_description" }];
+//const messages = [{ "role": "user", "content": "hi" }];
 //GPT-3 and DALL-E API Key
 const GPTApiKey = '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';
 const model = 'gpt-3.5-turbo';
@@ -39,8 +39,9 @@ const GPTTouristData = {
 };
 
 
-app.get('/test', async (req, res) => {
-  await axios({
+app.get('/GPTLocationInfo', async (req, res) => {
+  console.log("------- GPT IS BEING USED RIGHT NOW -------")
+  const response = await axios({
     method: 'post',
     url: 'https://api.openai.com/v1/chat/completions',
     headers: {
@@ -49,14 +50,9 @@ app.get('/test', async (req, res) => {
     },
     data: GPTTouristData,
   })
-    .then((response) => {
-      console.log(response.data.choices[0].message);
-      res.json(response.data.choices[0].message.content);
-    })
-    .catch((error) => {
-      console.error(error);
-      res.status(500).send('Gay API Error Timeout');
-    });
+  const data = JSON.parse('{ "locations" : ' + String(response.data.choices[0].message.content) + '}');
+    console.log(data);
+    res.json(data);
 });
 
 // //given the prompt for the tourist destinations it provides an array of three good tourist destinations

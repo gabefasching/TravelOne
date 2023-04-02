@@ -16,42 +16,64 @@ function RouteButton() {
 }
 
 function HomePage() {
-  //use setData as a setter for data. Will autoupdate view when state varible is modified
-  const [data, setData] = useState({});
-  
+  //use setData as a setter for data. Will autoupdate view when state variable is modified
+  const [firstCity, setFirstCity] = useState({});
+  const [secondCity, setSecondCity] = useState({});
+  const [thirdCity, setThirdCity] = useState({});
 
   //will update react view everytime useEffect is called
   useEffect(() => {
-    axios.get('http://localhost:3000/').then((response) => {
-      console.log(response)
-      setData(response.data)
-    });
+    const  fetchLocationData = async () => {
+      await axios.get('http://localhost:3000/GPTLocationInfo', {timeout : 20000000}).then((response) => {
+        console.log(response);
+        setFirstCity(response.data.locations[0]);
+        setSecondCity(response.data.locations[1]);
+        setThirdCity(response.data.locations[2]);
+      });
+    };
+    fetchLocationData();
+
+    
   }, []);
 
   //pass state variables as values to html components
   return (
     <body>
-    <ul class="taskbar">
+      <ul class="taskbar">
         <li class="taskbar"><div class="taskbar" href="">Travel One</div></li>
         <li class="taskbar"><div class="taskbar" href="about.asp">About</div></li>
-    </ul>
+      </ul>
 
-    <div class = "hotDests">
-        <div class="hotImg"><img class="hI" src={image1}/> <div class="middle">texts</div></div>
-        <div class="hotImg"><img class="hI" src={image1}/><div class="middle">texts</div></div>
-        <div class="hotImg"><img class="hI" src={image1}/><div class="middle">texts</div></div>
-    </div>
+      <div class="hotDests">
+        <div class="hotImg"><img class="hI" src={image1} /> <div class="middle">
+          <h1>{firstCity == null ? "Data not yet loaded" :firstCity.city}</h1>
+          <br></br>
+          <h3>{firstCity == null ? "Data not yet loaded" : firstCity.city_description}</h3>
+        </div></div>
+        <div class="hotImg"><img class="hI" src={image1} /><div class="middle">
+          <h1>{firstCity  == null ? "Data not yet loaded" : secondCity.city}</h1>
+          <br></br>
+          <h3>{secondCity == null ? "Data not yet loaded" : secondCity.city_description}</h3>
+        </div></div>
+        <div class="hotImg"><img class="hI" src={image1} /><div class="middle">
+          <h1>{thirdCity  == null ? "Data not yet loaded" : thirdCity.city}</h1>
+          <br></br>
+          <h3>{thirdCity  == null ? "Data not yet loaded" : thirdCity.city_description}</h3>
+        </div></div>
+      </div>
 
-    <div class = "idInput">
+      <div>
+      </div>
+      <div class="idInput">
         <div class="idLabel">Start Your Adventure!!</div>
         <div class="rightHalf">
-            <input class="idFeild" type="text" id="name" name="name" required minlength="4" maxlength="8" size="10"/>
-            <button class="idButton">Go!</button>
+          <input class="idFeild" type="text" id="name" name="name" required minlength="4" maxlength="8" size="10" />
+          <button class="idButton">Go!</button>
         </div>
-        <RouteButton/>
+        <RouteButton />
 
-    </div>
-</body>
+      </div>
+    </body>
   
     
   );
