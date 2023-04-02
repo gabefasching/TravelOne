@@ -31,7 +31,7 @@ def getFlights(originLocation, destinationLocation, departureDate, adults):
 
 
    api_url = 'https://api.api-ninjas.com/v1/geocoding?city={}&country={}'.format(destination[0], destination[1])
-   response = requests.get(api_url + destinationLocation, headers={'X-Api-Key': 'C7sQWso5lpYMqkCXIxRNmw==DvpZDulNzEbYuOV5'})
+   response = requests.get(api_url + destinationLocation, headers={'X-Api-Key': GEO_API_KEY})
    response = json.loads(response.text)[0]
 
 
