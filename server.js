@@ -18,10 +18,25 @@ app.get('/', async (req, res) => {
     try {
         const response = await axios.get('https://catfact.ninja/fact');
         const data = response.data;
-        console.log('Data sent from backend:', data);
+       // console.log('Data sent from backend:', data);
         res.json(data);
       } catch (error) {
-        console.error(error);
+        //error(error);
         res.status(500).send('Internal server error');
       }
   });
+
+  app.get('/hotel-page', async(req, res) => {
+    res.sendFile(__dirname + '/hotelpage.js');
+  })
+ 
+  app.get('/hotels', (req, res) => {
+    console.log("Hello there bro")
+    res.json({name: "Hello"})
+  });
+  
+  
+  
+  
+  
+  
