@@ -65,7 +65,7 @@ function HomePage() {
   return (
     <body>
       <ul class="taskbar">
-        <li class="taskbar"><div class="taskbar" href="">Travel One</div></li>
+        <li class="taskbar"><div class="taskbar" href=""><title>TRAVEL ONE</title></div></li>
         <li class="taskbar"><div class="taskbar" href="about.asp">About</div></li>
       </ul>
 
