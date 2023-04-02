@@ -59,6 +59,7 @@ app.get('/GPTLocationInfo', async (req, res) => {
 
 app.post('/DALLEPicture', async (req, res) => {
   console.log("------- DALLE IS BEING USED RIGHT NOW -------")
+  reqbody = req.body;
   const response = await axios({
     method: 'post',
     url: 'https://api.openai.com/v1/images/generations',
@@ -67,7 +68,7 @@ app.post('/DALLEPicture', async (req, res) => {
       'Authorization': 'Bearer ' + GPTApiKey,
     },
     data: {
-      "prompt": req.place,
+      "prompt": reqbody.data.place,
       'n': 1,
       'size': '512x512'
     },
