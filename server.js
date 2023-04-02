@@ -77,7 +77,7 @@ app.post('/DALLEPicture', async (req, res) => {
   res.json(data);
 });
 
-app.use('/hotelAPI', ')
+app.use('/hotelAPI', hotelAPI);
   
   
   
