@@ -6,7 +6,7 @@ from amadeus import Client, ResponseError
 
 amadeus = Client(
    client_id='2AoK8VGoA4o75yWQ71RijY2gkecIUkKz',
-   client_secret='fwO2iYSvtEbI8jTN'
+   client_secret=AMADEUS_API_KEY
 )
 
 
@@ -22,7 +22,7 @@ def getFlights(originLocation, destinationLocation, departureDate, adults):
 
 
    api_url = 'https://api.api-ninjas.com/v1/geocoding?city={}&country={}'.format(origin[0], origin[1])
-   response = requests.get(api_url + originLocation, headers={'X-Api-Key': 'C7sQWso5lpYMqkCXIxRNmw==DvpZDulNzEbYuOV5'})
+   response = requests.get(api_url + originLocation, headers={'X-Api-Key': GEO_API_KEY})
    response = json.loads(response.text)[0]
 
 

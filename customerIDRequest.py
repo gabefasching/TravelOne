@@ -3,8 +3,8 @@ import json
 import requests
 
 # set the API endpoint and key
-endpoint = 'http://api.nessieisreal.com/customers?key=6aad83d07cf9e01164f8cfb5a02eb362'
-api_key = '6aad83d07cf9e01164f8cfb5a02eb362'
+endpoint = 'http://api.nessieisreal.com/customers?key=' + SECRET_API_KEY
+api_key = SECRET_API_KEY
 
 def returnCustomerData(customer_id):
     # two sample customer IDs
