@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const bParse = require('body-parser');
 const axios = require('axios')
+const hotelAPI = require('./hotelAPI.js');
 const app = express();
 
 app.use(cors());
@@ -55,25 +56,28 @@ app.get('/GPTLocationInfo', async (req, res) => {
     res.json(data);
 });
 
-// //given the prompt for the tourist destinations it provides an array of three good tourist destinations
-// function getTouristPlaces() {
-//   axios({
-//     method: 'post',
-//     url: 'https://api.openai.com/v1/chat/completions',
-//     headers: {
-//       'Content-Type': 'application/json',
-//       'Authorization': 'Bearer ' + GPTApiKey
-//     },
-//     data: GPTTouristData,
-//   })
-//     .then((response) => {
-//       console.log(response.data.choices[0].message);
-//     })
-//     .catch((error) => {
-//       console.error(error);
-//     });
-// }
-  
+
+app.post('/DALLEPicture', async (req, res) => {
+  console.log("------- DALLE IS BEING USED RIGHT NOW -------")
+  const response = await axios({
+    method: 'post',
+    url: 'https://api.openai.com/v1/images/generations',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + GPTApiKey,
+    },
+    data: {
+      "prompt": req.place,
+      'n': 1,
+      'size': '512x512'
+    },
+  })
+  const data = response.data;
+  console.log(data);
+  res.json(data);
+});
+
+app.use('/hotelAPI', ')
   
   
   
